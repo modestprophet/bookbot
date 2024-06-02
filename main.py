@@ -1,15 +1,16 @@
 path_to_file = 'books/frankenstein.txt'
 
-def main(path_to_file: str):
-    text = get_text_from_file(path_to_file)
+
+def main(path: str) -> None:
+    text = get_text_from_file(path)
     word_count = (count_words(text))
     character_counts = count_characters(text)
     list_of_character_counts = create_list_of_dicts(character_counts)
     generate_report(word_count, list_of_character_counts)
 
 
-def get_text_from_file(path_to_file: str) -> str:
-    with open(path_to_file, 'r') as f:
+def get_text_from_file(path: str) -> str:
+    with open(path, 'r') as f:
         file_contents = f.read()
         return file_contents
 
@@ -21,6 +22,7 @@ def count_words(text: str) -> int:
 
 
 def count_characters(text: str) -> dict[str, int]:
+    """counts alphabetic characters in text"""
     character_counts = {}
     for character in text:
         if character.isalpha():
@@ -53,3 +55,4 @@ def generate_report(total_words: int, list_of_character_counts: list[dict[str, i
 
 if __name__ == '__main__':
     main(path_to_file)
+
